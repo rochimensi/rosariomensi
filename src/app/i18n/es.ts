@@ -97,26 +97,27 @@ export const es: PageCopy = {
   process: {
     eyebrow: "Cómo trabajo",
     title: "Mi Proceso",
+    centerLabel: "Desarrollo\niterativo",
     steps: [
       {
+        number: "01",
         title: "Descubrir",
         text: "Mapeo el contexto con entrevistas a stakeholders, análisis competitivos e investigación con usuarios, porque los buenos productos comienzan escuchando y haciendo las preguntas correctas.",
       },
       {
+        number: "02",
         title: "Definir",
         text: "Transformo la investigación en problemas claros, perfiles de usuarios y mapas de recorrido. Herramientas como UX Pilot me ayudan a detectar confusiones temprano para alinear al equipo antes de diseñar pantallas.",
       },
       {
+        number: "03",
         title: "Diseñar",
         text: "Comienzo con bocetos de flujos y pantallas, y luego los convierto en propuestas visuales pulidas y navegables. Exploro distintas direcciones y ajusto detalles como espaciado, tipografía y claridad.",
       },
       {
+        number: "04",
         title: "Testear",
         text: "Observo cómo las personas usan lo que construimos (o un prototipo clickable) para detectar fricciones. También reviso métricas simples cuando están disponibles, para decidir mejoras con evidencia real.",
-      },
-      {
-        title: "Iterar",
-        text: "Después del lanzamiento, continúo mejorando el producto con releases pequeños, ajustes constantes y validaciones posteriores con usuarios y datos. El buen diseño evoluciona junto al producto.",
       },
     ],
   },
@@ -128,4 +129,5 @@ export const es: PageCopy = {
     linkedin: "LINKEDIN",
   },
   colophon: "© 2026 — Diseñado y desarrollado por mí.",
+  backToTop: "Volver arriba",
 };

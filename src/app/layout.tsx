@@ -16,7 +16,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rosario Mensi | UX Designer Portfolio",
+  title: "Rosario Mensi | Digital Solutions Engineer",
   description:
     "A minimalist editorial portfolio showcasing UX case studies, process, and thoughtful digital experiences.",
 };

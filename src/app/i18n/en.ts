@@ -97,26 +97,27 @@ export const en: PageCopy = {
   process: {
     eyebrow: "How I work",
     title: "My Process",
+    centerLabel: "Iterate\ndevelopment",
     steps: [
       {
+        number: "01",
         title: "Discover",
         text: "I map the context with stakeholder interviews, competitive scans, and user research, because strong products start with listening closely and asking the questions that matter.",
       },
       {
+        number: "02",
         title: "Define",
         text: "I turn research into plain-language problem statements, simple profiles of who we're helping, and maps of how people move through a task. Tools like UX Pilot help me spot confusing steps or unclear wording early, so everyone agrees on the plan before we design screens.",
       },
       {
+        number: "03",
         title: "Design",
         text: "I start with rough sketches of screens and flows, then shape them into polished layouts people can click through. I try a few directions, compare them with the team, and keep refining details like spacing, typography, and clarity.",
       },
       {
+        number: "04",
         title: "Test",
         text: "I watch real people use what we built (or a clickable preview) and note where they hesitate or get stuck. I also use simple behavior metrics when available, so improvements are based on real evidence, not assumptions.",
-      },
-      {
-        title: "Iterate",
-        text: "After launch, I keep improving the product with small releases, steady tweaks, and follow-up checks with users and data. Good design is ongoing care as needs and products evolve.",
       },
     ],
   },
@@ -128,4 +129,5 @@ export const en: PageCopy = {
     linkedin: "LINKEDIN",
   },
   colophon: "© 2026 — Designed and developed by me.",
+  backToTop: "Back to top",
 };

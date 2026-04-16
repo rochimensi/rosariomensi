@@ -36,3 +36,30 @@ body {
 a {
   text-decoration: none;
 }
+
+@keyframes process-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.process-center-label {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 220ms ease;
+}
+
+.process-center-label-group:hover .process-center-label {
+  transform: scale(1.1);
+}
+
+.process-ring-rotate {
+  transform-origin: 0 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .process-diagram:hover .process-ring-rotate {
+    animation: process-ring-spin 30s linear infinite;
+  }
+}

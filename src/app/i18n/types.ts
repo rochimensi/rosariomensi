@@ -10,6 +10,7 @@ export type Project = {
 };
 
 export type Step = {
+  number: string;
   title: string;
   text: string;
 };
@@ -47,7 +48,7 @@ export type PageCopy = {
     hometownSuffix: string;
     skills: string[];
   };
-  process: { eyebrow: string; title: string; steps: Step[] };
+  process: { eyebrow: string; title: string; centerLabel: string; steps: Step[] };
   contact: {
     eyebrow: string;
     title: string;
@@ -56,4 +57,5 @@ export type PageCopy = {
     linkedin: string;
   };
   colophon: string;
+  backToTop: string;
 };
