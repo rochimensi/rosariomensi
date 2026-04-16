@@ -2,7 +2,14 @@ import { PageCopy } from "./types";
 
 export const en: PageCopy = {
   languageLabel: "Language",
-  nav: { work: "Work", about: "About", process: "Process", contact: "Contact" },
+  nav: {
+    work: "Work",
+    about: "About",
+    process: "Process",
+    contact: "Contact",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
   hero: {
     eyebrow: "DIGITAL SOLUTIONS",
     title: "Digital products, done right, with intention.",

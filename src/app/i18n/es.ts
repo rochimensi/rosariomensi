@@ -2,7 +2,14 @@ import { PageCopy } from "./types";
 
 export const es: PageCopy = {
   languageLabel: "Idioma",
-  nav: { work: "Proyectos", about: "Sobre mí", process: "Proceso", contact: "Contacto" },
+  nav: {
+    work: "Proyectos",
+    about: "Sobre mí",
+    process: "Proceso",
+    contact: "Contacto",
+    openMenu: "Abrir menú",
+    closeMenu: "Cerrar menú",
+  },
   hero: {
     eyebrow: "SOLUCIONES DIGITALES",
     title: "Productos digitales bien hechos, con intención.",
@@ -115,9 +122,9 @@ export const es: PageCopy = {
   },
   contact: {
     eyebrow: "Contacto",
-    title: "Creemos algo hermoso juntos",
-    descriptionLine1: "Siempre estoy abierta a conversar sobre nuevos proyectos, ideas creativas,",
-    descriptionLine2: "u oportunidades para ser parte de tu visión.",
+    title: "Creemos algo único juntos",
+    descriptionLine1: "Siempre estoy abierta a conversar sobre nuevos proyectos, ideas creativas, u oportunidades",
+    descriptionLine2: "para ser parte de tu visión.",
     linkedin: "LINKEDIN",
   },
   colophon: "© 2026 — Diseñado y desarrollado por mí.",

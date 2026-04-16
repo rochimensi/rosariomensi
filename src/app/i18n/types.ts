@@ -16,7 +16,14 @@ export type Step = {
 
 export type PageCopy = {
   languageLabel: string;
-  nav: { work: string; about: string; process: string; contact: string };
+  nav: {
+    work: string;
+    about: string;
+    process: string;
+    contact: string;
+    openMenu: string;
+    closeMenu: string;
+  };
   hero: { eyebrow: string; title: string; description: string; cta: string };
   work: {
     eyebrow: string;
