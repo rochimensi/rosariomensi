@@ -79,7 +79,7 @@ export default function Home() {
         <Footer t={t} />
       </div>
       <a
-        href="#top"
+        href="#"
         aria-label={t.backToTop}
         title={t.backToTop}
         onClick={(e) => {

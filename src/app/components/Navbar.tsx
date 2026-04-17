@@ -32,7 +32,7 @@ export function Navbar({
       />
       <div className="relative">
         <div className="flex items-center justify-between gap-4 py-4 sm:gap-6">
-          <a href="#top" className="font-display text-2xl italic tracking-[0.09rem] sm:text-3xl">
+          <a href="#" className="font-display text-2xl italic tracking-[0.09rem] sm:text-3xl">
             Rosario Mensi
           </a>
           <div className="flex shrink-0 items-center gap-2 sm:gap-5">

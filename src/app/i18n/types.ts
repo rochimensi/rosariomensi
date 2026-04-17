@@ -29,6 +29,7 @@ export type PageCopy = {
   work: {
     eyebrow: string;
     title: string;
+    clientsMarqueeLabel: string;
     projectImageLabel: string;
     defaultCodeCta: string;
     featuredWork: Project[];

@@ -2,7 +2,7 @@ import type { PageCopy } from "../i18n";
 
 export function HeroSection({ t }: { t: PageCopy }) {
   return (
-    <section id="top" className="px-0 py-14 text-center md:py-20">
+    <section className="px-0 py-14 text-center md:py-20">
       <div className="mx-auto w-full max-w-6xl">
         <p className="mx-auto mb-5 max-w-fit text-center text-xs uppercase tracking-[0.26rem] text-black/55">{t.hero.eyebrow}</p>
         <h1

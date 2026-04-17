@@ -20,6 +20,7 @@ export const en: PageCopy = {
   work: {
     eyebrow: "Selected Projects",
     title: "Featured Work",
+    clientsMarqueeLabel: "Companies and teams I have worked with",
     projectImageLabel: "PROJECT IMAGE",
     defaultCodeCta: "Here's the code",
     featuredWork: [
@@ -50,21 +51,21 @@ export const en: PageCopy = {
         title: "Omar Peralta - Magazine Article",
         tag: "Marketing / Design",
         description:
-          "A magazine feature crafted for a professional golf player, marking my first marketing-focused project in a magazine format.",
+          "A magazine feature crafted for a professional golf player, marking my first marketing-focused project in a magazine format. The work included an interview process and documentation to align the story, tone, and visuals.",
         image: "/omar-peralta.png",
       },
       {
         title: "SpendWise - Personal Finance Management Application",
         tag: "Product Design & Development",
         description:
-          "A mobile-friendly web application designed to help users track expenses, analyze spending patterns, and receive AI-powered financial advice.",
+          "A mobile-friendly web application designed to help users track expenses, analyze spending patterns, and receive AI-powered financial advice, built as a code challenge completed in just 1 week.",
         image: "/spendwise.png",
         codeUrl: "https://github.com/rochimensi/spendwise",
         codeCta: "Here's the code",
       },
       {
         title: "AllSeas - Viagens by Liana Lied",
-        tag: "Design & Development",
+        tag: "Development",
         description:
           "A landing page for a travel company. The challenge was giving the client a simple way to manage and update the website content independently.",
         image: "/allseas.png",

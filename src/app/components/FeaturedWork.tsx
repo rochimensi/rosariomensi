@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { PageCopy } from "../i18n";
 import { ImagePlaceholder } from "./ImagePlaceholder";
+import { LogoMarquee } from "./LogoMarquee";
 
 export function FeaturedWork({ t }: { t: PageCopy }) {
   return (
@@ -69,6 +70,11 @@ export function FeaturedWork({ t }: { t: PageCopy }) {
                 ) : null}
               </div>
             </div>
+            {index === 0 ? (
+              <div className="mt-10 md:mt-12">
+                <LogoMarquee t={t} className="pb-0 md:pb-0" />
+              </div>
+            ) : null}
           </article>
         ))}
       </div>

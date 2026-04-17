@@ -12,14 +12,15 @@ export const es: PageCopy = {
   },
   hero: {
     eyebrow: "SOLUCIONES DIGITALES",
-    title: "Productos digitales bien hechos, con intención.",
+    title: "Experiencias digitales construidas con intención.",
     description:
       "Soy Ingeniera en Sistemas y me sumergí en el Diseño para crear experiencias integrales y centradas en las personas, con empatía por el rol de cada integrante del equipo, acelerando resultados con GenAI, desarrollo de productos AI-first y automatización de flujos de trabajo.",
     cta: "Ver proyectos seleccionados",
   },
   work: {
-    eyebrow: "Proyectos Seleccionados",
-    title: "Trabajo Destacado",
+    eyebrow: "Casos destacados",
+    title: "Proyectos de referencia",
+    clientsMarqueeLabel: "Empresas y equipos con los que he trabajado",
     projectImageLabel: "IMAGEN DEL PROYECTO",
     defaultCodeCta: "Ver código",
     featuredWork: [
@@ -31,7 +32,7 @@ export const es: PageCopy = {
         image: "/engineering.png",
       },
       {
-        title: "Ansel - Ecosistema Digital de Seguro de Salud",
+        title: "Ansel - Coberturas de Salud en EEUU",
         tag: "Principal UX / UI Design",
         description:
           "Lideré el proceso de diseño de un ecosistema digital de salud, con portales web y apps móviles para brokers, empleadores y empleados. El desafío fue crear una solución white-label personalizable para cada partner estratégico. El objetivo: mejorar la experiencia de claims y simplificar enrollments.",
@@ -41,30 +42,30 @@ export const es: PageCopy = {
         title: "R&O Golf Range - Sistema de Gestión",
         tag: "Diseño y Desarrollo",
         description:
-          "Un sistema de gestión para driving range, con una experiencia responsive para usuarios de todas las edades y niveles, además de paneles de administración para impulsar una transformación digital completa. También creo contenido para redes sociales para conectar clientes con la marca.",
+          "MVP para un sistema de gestión para driving range, con una experiencia responsive para usuarios de todas las edades y niveles, además de paneles de administración para impulsar una transformación digital completa. También creo contenido para redes sociales para conectar clientes con la marca.",
         image: "/ro-golf-range.png",
         codeUrl: "https://www.instagram.com/ro.golfrange/",
-        codeCta: "Visitar la cancha",
+        codeCta: "Visita el range",
       },
       {
         title: "Omar Peralta - Artículo de Revista",
         tag: "Marketing / Diseño",
         description:
-          "Un artículo de revista realizado para un golfista profesional, marcando mi primer proyecto de marketing en formato editorial.",
+          "Artículo de revista realizado para un golfista profesional, marcando mi primer proyecto de marketing en formato editorial. Incluyó un proceso de entrevistas y documentación para alinear relato, tono y piezas visuales.",
         image: "/omar-peralta.png",
       },
       {
         title: "SpendWise - App de Finanzas Personales",
         tag: "Diseño y Desarrollo de Producto",
         description:
-          "Una aplicación web mobile-friendly diseñada para ayudar a las personas a registrar gastos, analizar hábitos de consumo y recibir recomendaciones financieras impulsadas por IA.",
+          "Una aplicación web mobile-friendly diseñada para ayudar a las personas a registrar gastos, analizar hábitos de consumo y recibir recomendaciones financieras impulsadas por IA, creada como code challenge completado en solo 1 semana.",
         image: "/spendwise.png",
         codeUrl: "https://github.com/rochimensi/spendwise",
-        codeCta: "Ver código",
+        codeCta: "Mira el código",
       },
       {
         title: "AllSeas - Viagens by Liana Lied",
-        tag: "Diseño y Desarrollo",
+        tag: "Desarrollo",
         description:
           "Una landing page para una empresa de viajes. El desafío fue darle al cliente una forma simple de administrar y actualizar el contenido del sitio de forma autónoma.",
         image: "/allseas.png",
