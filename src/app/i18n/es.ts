@@ -1,11 +1,29 @@
 import { PageCopy } from "./types";
 
+const ashleyParagraphsEs = [
+  "Rosario y yo tuvimos la oportunidad de trabajar muy de cerca durante los últimos cuatro años, mientras fue Senior Software Engineer en 2U. Es una ingeniera talentosa que aporta un conocimiento profundo a cualquier equipo. Rosario demuestra de manera constante excelencia técnica, una comprensión profunda de arquitecturas backend y un compromiso inquebrantable con la calidad.",
+  "Tuvo un papel decisivo en diseñar e implementar sistemas escalables que soportan algunas de nuestras funciones de negocio más críticas. Su capacidad para comprender rápidamente problemas complejos y entregar soluciones elegantes y mantenibles impresionó de forma constante tanto al equipo de ingeniería como a las partes interesadas.",
+  "Más allá de sus habilidades técnicas, Rosario fue una mentora confiable para otras personas ingenieras y una colaboradora transversal. Siempre tomó la iniciativa para impulsar mejoras en nuestro proceso de desarrollo y fomentar una cultura de calidad de código y aprendizaje continuo.",
+  "Recomiendo a Rosario de todo corazón y sin reservas.",
+];
+
+const johnParagraphsEs = [
+  "Trabajé con Rosario durante casi 3 años y creo que cualquier equipo de desarrollo de software tendría mucha suerte de contar con ella. Es increíblemente talentosa y experimentada, y a la vez aporta la curiosidad y la paciencia necesarias para construir software de alta calidad. A medida que nuestro producto avanzó en desarrollo y release, Rosario se movió con naturalidad entre distintos frentes de trabajo. Sus revisiones de código fueron siempre exhaustivas y cuidadosas, y supo mantener la arquitectura del sistema a alto nivel sin perder de vista bases de código limpias y legibles. Rosario fue una pieza clave en el éxito de nuestro proyecto, que tras el release procesa más de 5 millones de registros al mes, ayudando a estudiantes y docentes a inscribirse en cursos en todo el mundo.",
+];
+
+const nitaiParagraphsEs = [
+  "Tuve el privilegio de trabajar junto a Rosario y puedo decir con seguridad que es una de las ingenieras de software más dedicadas y talentosas con las que he colaborado. Rosario siempre fue más allá: ya fuera sumergiéndose en desafíos técnicos complejos, mentorando al equipo o dando un paso al frente en situaciones de alta presión sin dudar.",
+  "Aporta no solo excelencia técnica, sino también una mentalidad tranquila y orientada a soluciones que eleva el listón para todos a su alrededor. Su código es elegante, su atención al detalle es excepcional y tiene una capacidad notable para pensar a la vez de forma estratégica y pragmática.",
+  "Cualquier equipo tendría suerte de tenerla. Rosario es el tipo de ingeniera que hace que todo el equipo mejore: por su ética de trabajo, su colaboración y su integridad.",
+];
+
 export const es: PageCopy = {
   languageLabel: "Idioma",
   nav: {
     work: "Proyectos",
     about: "Sobre mí",
     process: "Proceso",
+    reviews: "Resultados",
     contact: "Contacto",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
@@ -121,6 +139,37 @@ export const es: PageCopy = {
         text: "Observo cómo las personas usan lo que construimos (o un prototipo clickable) para detectar fricciones. También reviso métricas simples cuando están disponibles, para decidir mejoras con evidencia real.",
       },
     ],
+  },
+  reviews: {
+    eyebrow: "Impacto",
+    title: "Resultados",
+    items: [
+      {
+        name: "Ashley Beam",
+        role: "Directora Senior de Ingeniería, Habilitación y Estrategia de IA en 2U",
+        relationship: "Ashley supervisó a Rosario de forma directa",
+        avatar: "/avatars/ashley.jpeg",
+        paragraphs: ashleyParagraphsEs,
+      },
+      {
+        name: "John Mathena",
+        role: "Director de Ingeniería de Software en 2U",
+        relationship: "John trabajó con Rosario en el mismo equipo",
+        avatar: "/avatars/john.jpeg",
+        paragraphs: johnParagraphsEs,
+      },
+      {
+        name: "Nitai Farmer",
+        role: "Senior Software Engineer",
+        relationship: "Nitai trabajó con Rosario en el mismo equipo",
+        avatar: "/avatars/Tai.jpeg",
+        paragraphs: nitaiParagraphsEs,
+      },
+    ],
+    carouselPrev: "Reseña anterior",
+    carouselNext: "Reseña siguiente",
+    carouselDots: "Elegir una reseña",
+    carouselGoTo: "Ir a la reseña",
   },
   contact: {
     eyebrow: "Contacto",

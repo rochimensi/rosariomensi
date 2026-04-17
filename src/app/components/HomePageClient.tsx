@@ -10,6 +10,7 @@ import { Footer } from "./Footer";
 import { HeroSection } from "./HeroSection";
 import { Navbar } from "./Navbar";
 import { ProcessSection } from "./ProcessSection";
+import { ReviewsSection } from "./ReviewsSection";
 
 export function HomePageClient({ locale }: { locale: Locale }) {
   const t = copyByLocale[locale];
@@ -31,6 +32,15 @@ export function HomePageClient({ locale }: { locale: Locale }) {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  /** Hash targets after client navigation / refresh (Next `<Link>` does not always scroll to `#`). */
+  useEffect(() => {
+    const id = window.location.hash.replace(/^#/, "");
+    if (!id) return;
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+  }, [locale]);
 
   useEffect(() => {
     if (!mobileNavOpen && !langMenuOpen) return;
@@ -75,6 +85,7 @@ export function HomePageClient({ locale }: { locale: Locale }) {
         <FeaturedWork t={t} />
         <AboutSection t={t} />
         <ProcessSection t={t} locale={locale} />
+        <ReviewsSection t={t} />
         <ContactSection t={t} />
         <Footer t={t} locale={locale} />
       </div>

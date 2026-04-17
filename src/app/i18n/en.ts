@@ -1,11 +1,29 @@
 import { PageCopy } from "./types";
 
+const ashleyParagraphs = [
+  "Rosario and I had the opportunity to work closely together over the past four years during her tenure as a Senior Software Engineer at 2U. She is a talented engineer who brings a wealth of knowledge to any team. Rosario consistently demonstrates technical excellence, a deep understanding of backend architectures, and a relentless commitment to quality.",
+  "She has played a pivotal role in designing and implementing scalable systems that support some of our most critical business functions. Her ability to quickly understand complex problems and deliver elegant, maintainable solutions consistently impressed both our engineering team and stakeholders.",
+  "Beyond her technical skills, Rosario was a reliable mentor for other engineers and a collaborative partner across teams. She always took the initiative to drive improvements in our development process and foster a culture of code quality and continuous learning.",
+  "I can wholeheartedly recommend Rosario without reservation.",
+];
+
+const johnParagraphs = [
+  "I worked with Rosario for nearly 3 years and I think any software development team would be extremely lucky to have her. She is incredibly talented and experienced while bringing the curiosity and patience required to be successful building high-quality software. As our product moved through development and release, Rosario moved seamlessly across our different workstreams. Her code reviews were always thorough and thoughtful, and she did a great job keeping the high level system architecture in mind while maintaining clean and readable codebases. Rosario was a key part in the success of our project, which after release processes over 5 million records each month, helping students and faculty enroll in courses across the world.",
+];
+
+const nitaiParagraphs = [
+  "I had the pleasure of working alongside Rosario, and I can confidently say she is one of the most dedicated and talented software engineers I've ever worked with. Rosario consistently went above and beyond—whether that meant diving deep into complex technical challenges, mentoring team members, or stepping up in high-stakes situations without hesitation.",
+  "She brings not just technical excellence, but also a calm, solution-focused mindset that raises the bar for everyone around her. Her code is elegant, her attention to detail is unmatched, and she has an incredible ability to think both strategically and pragmatically.",
+  "Any team would be lucky to have her. Rosario is the kind of engineer who makes everyone better—through her work ethic, her collaboration, and her integrity.",
+];
+
 export const en: PageCopy = {
   languageLabel: "Language",
   nav: {
     work: "Work",
-    about: "About",
+    about: "About me",
     process: "Process",
+    reviews: "Reviews",
     contact: "Contact",
     openMenu: "Open menu",
     closeMenu: "Close menu",
@@ -121,6 +139,37 @@ export const en: PageCopy = {
         text: "I watch real people use what we built (or a clickable preview) and note where they hesitate or get stuck. I also use simple behavior metrics when available, so improvements are based on real evidence, not assumptions.",
       },
     ],
+  },
+  reviews: {
+    eyebrow: "Client feedback",
+    title: "Reviews",
+    items: [
+      {
+        name: "Ashley Beam",
+        role: "Senior Director of Engineering, AI Enablement and Strategy at 2U",
+        relationship: "Ashley managed Rosario directly",
+        avatar: "/avatars/ashley.jpeg",
+        paragraphs: ashleyParagraphs,
+      },
+      {
+        name: "John Mathena",
+        role: "Director of Software Engineering at 2U",
+        relationship: "John worked with Rosario on the same team",
+        avatar: "/avatars/john.jpeg",
+        paragraphs: johnParagraphs,
+      },
+      {
+        name: "Nitai Farmer",
+        role: "Senior Software Engineer",
+        relationship: "Nitai worked with Rosario on the same team",
+        avatar: "/avatars/Tai.jpeg",
+        paragraphs: nitaiParagraphs,
+      },
+    ],
+    carouselPrev: "Previous review",
+    carouselNext: "Next review",
+    carouselDots: "Choose a review",
+    carouselGoTo: "Go to review",
   },
   contact: {
     eyebrow: "Contact",

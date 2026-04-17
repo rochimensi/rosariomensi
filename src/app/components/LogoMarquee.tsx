@@ -83,11 +83,26 @@ function LogoRocketWagon() {
     <Image
       src="/logos/rocket-wagon.png"
       alt=""
-      width={225}
-      height={225}
-      sizes="40px"
-      className="h-10 w-10 shrink-0 object-contain opacity-55"
+      width={48}
+      height={48}
+      sizes="48px"
+      className="h-12 w-12 shrink-0 object-contain opacity-55"
     />
+  );
+}
+
+function LogoEpwery() {
+  return (
+    <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-zinc-500 px-3 py-1.5 opacity-55">
+      <Image
+        src="/logos/epwery.png"
+        alt=""
+        width={167}
+        height={56}
+        sizes="(max-width: 768px) 48vw, 220px"
+        className="h-8 w-auto max-w-[min(200px,48vw)] object-contain object-center"
+      />
+    </span>
   );
 }
 
@@ -100,6 +115,7 @@ function LogoStrip() {
       <LogoAmbush />
       <LogoBarnesNobleCollege />
       <LogoRocketWagon />
+      <LogoEpwery />
     </>
   );
 }

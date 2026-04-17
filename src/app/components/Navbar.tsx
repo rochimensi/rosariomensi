@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, type Dispatch, type RefObject, type SetStateAction } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+  type Dispatch,
+  type MouseEvent,
+  type RefObject,
+  type SetStateAction,
+} from "react";
 import { localeHref, replaceLocaleInPathname, type Locale } from "../i18n/config";
 import type { PageCopy } from "../i18n";
 
@@ -30,6 +38,36 @@ export function Navbar({
   const pathname = usePathname();
   const base = localeHref(locale);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  /** Next.js `<Link>` often does not scroll to `#hash` on the same route; mobile links also use `scroll={false}`. */
+  const goToSection = useCallback(
+    (e: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+      const homePath = `/${locale}`;
+      const onHome = pathname === homePath || pathname === `${homePath}/`;
+      if (!onHome) return;
+      e.preventDefault();
+      setMobileNavOpen(false);
+      const url = `${homePath}#${sectionId}`;
+      window.history.replaceState(null, "", url);
+      requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    },
+    [locale, pathname, setMobileNavOpen],
+  );
+
+  const goToTop = useCallback(
+    (e: MouseEvent<HTMLAnchorElement>) => {
+      const homePath = `/${locale}`;
+      const onHome = pathname === homePath || pathname === `${homePath}/`;
+      if (!onHome) return;
+      e.preventDefault();
+      setMobileNavOpen(false);
+      window.history.replaceState(null, "", homePath);
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    },
+    [locale, pathname, setMobileNavOpen],
+  );
 
   useEffect(() => {
     const onScroll = () => {
@@ -64,14 +102,33 @@ export function Navbar({
               className="hidden flex-wrap gap-x-5 gap-y-1 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 md:flex lg:gap-x-7 lg:text-xs lg:tracking-[0.19rem]"
               aria-label="Primary"
             >
-              <Link className="transition hover:text-black" href={localeHref(locale, "work")}>
+              <Link
+                className="transition hover:text-black"
+                href={localeHref(locale, "work")}
+                onClick={(e) => goToSection(e, "work")}
+              >
                 {t.nav.work}
               </Link>
-              <Link className="transition hover:text-black" href={localeHref(locale, "about")}>
+              <Link
+                className="transition hover:text-black"
+                href={localeHref(locale, "about")}
+                onClick={(e) => goToSection(e, "about")}
+              >
                 {t.nav.about}
               </Link>
-              <Link className="transition hover:text-black" href={localeHref(locale, "process")}>
+              <Link
+                className="transition hover:text-black"
+                href={localeHref(locale, "process")}
+                onClick={(e) => goToSection(e, "process")}
+              >
                 {t.nav.process}
+              </Link>
+              <Link
+                className="transition hover:text-black"
+                href={localeHref(locale, "reviews")}
+                onClick={(e) => goToSection(e, "reviews")}
+              >
+                {t.nav.reviews}
               </Link>
             </nav>
             <button
@@ -118,6 +175,7 @@ export function Navbar({
             <Link
               href={base}
               className="font-display text-center text-xl italic leading-tight tracking-[0.07rem] text-[rgb(38,38,38)] sm:text-2xl sm:tracking-[0.09rem] md:text-3xl"
+              onClick={(e) => goToTop(e)}
             >
               Rosario Mensi
             </Link>
@@ -127,6 +185,7 @@ export function Navbar({
             <Link
               href={localeHref(locale, "contact")}
               className="hidden shrink-0 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 transition hover:text-black md:inline-block lg:text-sm lg:tracking-[0.19rem]"
+              onClick={(e) => goToSection(e, "contact")}
             >
               {t.nav.contact}
             </Link>
@@ -266,7 +325,7 @@ export function Navbar({
             <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
               href={localeHref(locale, "work")}
-              onClick={() => setMobileNavOpen(false)}
+              onClick={(e) => goToSection(e, "work")}
               scroll={false}
             >
               {t.nav.work}
@@ -274,7 +333,7 @@ export function Navbar({
             <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
               href={localeHref(locale, "about")}
-              onClick={() => setMobileNavOpen(false)}
+              onClick={(e) => goToSection(e, "about")}
               scroll={false}
             >
               {t.nav.about}
@@ -282,15 +341,23 @@ export function Navbar({
             <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
               href={localeHref(locale, "process")}
-              onClick={() => setMobileNavOpen(false)}
+              onClick={(e) => goToSection(e, "process")}
               scroll={false}
             >
               {t.nav.process}
             </Link>
             <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
+              href={localeHref(locale, "reviews")}
+              onClick={(e) => goToSection(e, "reviews")}
+              scroll={false}
+            >
+              {t.nav.reviews}
+            </Link>
+            <Link
+              className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
               href={localeHref(locale, "contact")}
-              onClick={() => setMobileNavOpen(false)}
+              onClick={(e) => goToSection(e, "contact")}
               scroll={false}
             >
               {t.nav.contact}

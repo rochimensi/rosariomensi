@@ -15,12 +15,21 @@ export type Step = {
   text: string;
 };
 
+export type Review = {
+  name: string;
+  role: string;
+  relationship: string;
+  avatar: string;
+  paragraphs: string[];
+};
+
 export type PageCopy = {
   languageLabel: string;
   nav: {
     work: string;
     about: string;
     process: string;
+    reviews: string;
     contact: string;
     openMenu: string;
     closeMenu: string;
@@ -50,6 +59,15 @@ export type PageCopy = {
     skills: string[];
   };
   process: { eyebrow: string; title: string; centerLabel: string; steps: Step[] };
+  reviews: {
+    eyebrow: string;
+    title: string;
+    items: Review[];
+    carouselPrev: string;
+    carouselNext: string;
+    carouselDots: string;
+    carouselGoTo: string;
+  };
   contact: {
     eyebrow: string;
     title: string;
