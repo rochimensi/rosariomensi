@@ -12,9 +12,9 @@ export const es: PageCopy = {
   },
   hero: {
     eyebrow: "SOLUCIONES DIGITALES",
-    title: "Experiencias digitales construidas con intención.",
+    title: "Experiencias digitales con intención.",
     description:
-      "Soy Ingeniera en Sistemas y me sumergí en el Diseño para crear experiencias integrales y centradas en las personas, con empatía por el rol de cada integrante del equipo, acelerando resultados con GenAI, desarrollo de productos AI-first y automatización de flujos de trabajo.",
+      "Ingeniera en Sistemas sumergida en el Diseño para crear experiencias integrales y centradas en las personas, acelerando resultados con GenAI y automatización de flujos de trabajo.",
     cta: "Ver proyectos seleccionados",
   },
   work: {
@@ -76,7 +76,7 @@ export const es: PageCopy = {
     eyebrow: "Sobre mí",
     title: "El Puente Entre Tecnología y Personas",
     years: "14+ Años de Experiencia",
-    p1: "Comencé como Ingeniera en Sistemas, enfocada en cómo funcionan las cosas. Con el tiempo, me apasionó cómo se sienten las experiencias cuando las personas las usan.",
+    p1: "Comencé como Ingeniera en Sistemas. Pasé de entender cómo funcionan las cosas, a diseñar cómo se sienten al usarlas.",
     p2: "Esa curiosidad me llevó al UX Design. Conecto lógica y empatía, y diseño con un entendimiento profundo de los sistemas técnicos, sin perder de vista el lado humano en cada decisión.",
     p3: "Me entusiasma especialmente el desarrollo de productos AI-first, usando GenAI y automatización no solo como herramientas, sino como aceleradores para pensar mejor, iterar más rápido y generar mayor impacto.",
     p4: "También creo contenido para redes sociales, transformando ideas en historias y piezas visuales claras que conectan con la audiencia correcta.",
@@ -124,7 +124,7 @@ export const es: PageCopy = {
   },
   contact: {
     eyebrow: "Contacto",
-    title: "Creemos algo único juntos",
+    title: "Creemos algo único.",
     descriptionLine1: "Siempre estoy abierta a conversar sobre nuevos proyectos, ideas creativas, u oportunidades",
     descriptionLine2: "para ser parte de tu visión.",
     linkedin: "LINKEDIN",

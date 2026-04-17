@@ -1,59 +1,63 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { Dispatch, RefObject, SetStateAction } from "react";
-import type { Locale, PageCopy } from "../i18n";
+import { localeHref, replaceLocaleInPathname, type Locale } from "../i18n/config";
+import type { PageCopy } from "../i18n";
 
 export type NavbarProps = {
   t: PageCopy;
   locale: Locale;
-  setLocale: (locale: Locale) => void;
   mobileNavOpen: boolean;
   setMobileNavOpen: Dispatch<SetStateAction<boolean>>;
   langMenuOpen: boolean;
   setLangMenuOpen: Dispatch<SetStateAction<boolean>>;
   langMenuRef: RefObject<HTMLDivElement | null>;
+  langMenuDesktopRef: RefObject<HTMLDivElement | null>;
 };
 
 export function Navbar({
   t,
   locale,
-  setLocale,
   mobileNavOpen,
   setMobileNavOpen,
   langMenuOpen,
   setLangMenuOpen,
   langMenuRef,
+  langMenuDesktopRef,
 }: NavbarProps) {
+  const pathname = usePathname();
+  const base = localeHref(locale);
+
+  const langDropdownClasses =
+    "absolute right-0 top-full z-30 mt-1 min-w-28 rounded-lg border border-black/10 bg-white py-1 shadow-md";
+
   return (
-    <header className="sticky top-0 z-20 isolate">
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-0 bottom-0 -z-10 w-screen -translate-x-1/2 bg-[#f7f4ee]/90 backdrop-blur-sm"
-      />
-      <div className="relative">
-        <div className="flex items-center justify-between gap-4 py-4 sm:gap-6">
-          <a href="#" className="font-display text-2xl italic tracking-[0.09rem] sm:text-3xl">
-            Rosario Mensi
-          </a>
-          <div className="flex shrink-0 items-center gap-2 sm:gap-5">
-            <nav className="hidden gap-7 text-sm uppercase tracking-[0.19rem] text-black/70 md:flex" aria-label="Primary">
-              <a className="transition hover:text-black" href="#work">
+    <header className="sticky top-0 z-20 w-full bg-white">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="relative">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 py-2 sm:gap-4 md:gap-6">
+          {/* Left: section links (desktop) / menu (mobile) */}
+          <div className="flex min-h-[2.5rem] min-w-0 items-center justify-start">
+            <nav
+              className="hidden flex-wrap gap-x-5 gap-y-1 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 md:flex lg:gap-x-7 lg:text-xs lg:tracking-[0.19rem]"
+              aria-label="Primary"
+            >
+              <Link className="transition hover:text-black" href={localeHref(locale, "work")}>
                 {t.nav.work}
-              </a>
-              <a className="transition hover:text-black" href="#about">
+              </Link>
+              <Link className="transition hover:text-black" href={localeHref(locale, "about")}>
                 {t.nav.about}
-              </a>
-              <a className="transition hover:text-black" href="#process">
+              </Link>
+              <Link className="transition hover:text-black" href={localeHref(locale, "process")}>
                 {t.nav.process}
-              </a>
-              <a className="transition hover:text-black" href="#contact">
-                {t.nav.contact}
-              </a>
+              </Link>
             </nav>
             <button
               type="button"
               id="mobile-nav-toggle"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black/75 transition hover:border-black/30 hover:text-black md:hidden"
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15 text-black/75 transition hover:border-black/30 hover:text-black md:hidden"
               aria-expanded={mobileNavOpen}
               aria-controls="mobile-nav"
               onClick={() => {
@@ -88,138 +92,192 @@ export function Navbar({
                 </svg>
               )}
             </button>
-            <div ref={langMenuRef} className="relative md:static">
-              <div className="hidden items-center gap-2 rounded-full border border-black/15 px-2 py-1 text-[11px] uppercase tracking-[0.2rem] text-black/65 md:inline-flex">
-                <span className="sr-only">{t.languageLabel}</span>
-                <button
-                  type="button"
-                  onClick={() => setLocale("en")}
-                  className={`rounded-full px-2 py-1 transition ${
-                    locale === "en" ? "bg-black text-white" : "hover:text-black"
-                  }`}
+          </div>
+
+          <div className="flex min-w-0 justify-center px-1">
+            <Link
+              href={base}
+              className="font-display text-center text-xl italic leading-tight tracking-[0.07rem] text-[rgb(38,38,38)] sm:text-2xl sm:tracking-[0.09rem] md:text-3xl"
+            >
+              Rosario Mensi
+            </Link>
+          </div>
+
+          <div className="flex items-center justify-end gap-3 sm:gap-4">
+            <Link
+              href={localeHref(locale, "contact")}
+              className="hidden shrink-0 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 transition hover:text-black md:inline-block lg:text-sm lg:tracking-[0.19rem]"
+            >
+              {t.nav.contact}
+            </Link>
+            <div ref={langMenuDesktopRef} className="relative hidden md:block">
+              <button
+                type="button"
+                className="inline-flex h-10 min-w-13 items-center justify-center gap-1 rounded-full border border-black/15 px-2.5 text-[11px] font-medium uppercase tracking-[0.18rem] text-black/75 transition hover:border-black/30 hover:text-black"
+                aria-expanded={langMenuOpen}
+                aria-haspopup="listbox"
+                aria-label={`${t.languageLabel}: ${locale === "en" ? "EN" : "ES"}`}
+                onClick={() => setLangMenuOpen((o) => !o)}
+              >
+                <span aria-hidden="true">{locale === "en" ? "EN" : "ES"}</span>
+                <svg
+                  aria-hidden="true"
+                  className={`h-3.5 w-3.5 shrink-0 text-black/55 transition ${langMenuOpen ? "rotate-180" : ""}`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  EN
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLocale("es")}
-                  className={`rounded-full px-2 py-1 transition ${
-                    locale === "es" ? "bg-black text-white" : "hover:text-black"
-                  }`}
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+              {langMenuOpen ? (
+                <ul role="listbox" aria-label={t.languageLabel} className={langDropdownClasses}>
+                  <li role="presentation">
+                    <Link
+                      href={replaceLocaleInPathname(pathname, "en")}
+                      role="option"
+                      aria-selected={locale === "en"}
+                      scroll={false}
+                      className={`flex w-full items-center px-3 py-2 text-left text-[11px] uppercase tracking-[0.18rem] transition ${
+                        locale === "en"
+                          ? "bg-black text-white"
+                          : "text-black/70 hover:bg-black/5 hover:text-black"
+                      }`}
+                      onClick={() => setLangMenuOpen(false)}
+                    >
+                      English
+                    </Link>
+                  </li>
+                  <li role="presentation">
+                    <Link
+                      href={replaceLocaleInPathname(pathname, "es")}
+                      role="option"
+                      aria-selected={locale === "es"}
+                      scroll={false}
+                      className={`flex w-full items-center px-3 py-2 text-left text-[11px] uppercase tracking-[0.18rem] transition ${
+                        locale === "es"
+                          ? "bg-black text-white"
+                          : "text-black/70 hover:bg-black/5 hover:text-black"
+                      }`}
+                      onClick={() => setLangMenuOpen(false)}
+                    >
+                      Español
+                    </Link>
+                  </li>
+                </ul>
+              ) : null}
+            </div>
+
+            <div ref={langMenuRef} className="relative md:hidden">
+              <button
+                type="button"
+                className="inline-flex h-10 min-w-13 items-center justify-center gap-1 rounded-full border border-black/15 px-2.5 text-[11px] font-medium uppercase tracking-[0.18rem] text-black/75 transition hover:border-black/30 hover:text-black"
+                aria-expanded={langMenuOpen}
+                aria-haspopup="listbox"
+                aria-label={`${t.languageLabel}: ${locale === "en" ? "EN" : "ES"}`}
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  setLangMenuOpen((o) => !o);
+                }}
+              >
+                <span aria-hidden="true">{locale === "en" ? "EN" : "ES"}</span>
+                <svg
+                  aria-hidden="true"
+                  className={`h-3.5 w-3.5 shrink-0 text-black/55 transition ${langMenuOpen ? "rotate-180" : ""}`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  ES
-                </button>
-              </div>
-              <div className="md:hidden">
-                <button
-                  type="button"
-                  className="inline-flex h-10 min-w-13 items-center justify-center gap-1 rounded-full border border-black/15 px-2.5 text-[11px] font-medium uppercase tracking-[0.18rem] text-black/75 transition hover:border-black/30 hover:text-black"
-                  aria-expanded={langMenuOpen}
-                  aria-haspopup="listbox"
-                  aria-label={`${t.languageLabel}: ${locale === "en" ? "EN" : "ES"}`}
-                  onClick={() => {
-                    setMobileNavOpen(false);
-                    setLangMenuOpen((o) => !o);
-                  }}
-                >
-                  <span aria-hidden="true">{locale === "en" ? "EN" : "ES"}</span>
-                  <svg
-                    aria-hidden="true"
-                    className={`h-3.5 w-3.5 shrink-0 text-black/55 transition ${langMenuOpen ? "rotate-180" : ""}`}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
-                </button>
-                {langMenuOpen ? (
-                  <ul
-                    role="listbox"
-                    aria-label={t.languageLabel}
-                    className="absolute right-0 top-full z-30 mt-1 min-w-28 rounded-lg border border-black/10 bg-[#f7f4ee] py-1 shadow-md"
-                  >
-                    <li role="presentation">
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={locale === "en"}
-                        className={`flex w-full items-center px-3 py-2 text-left text-[11px] uppercase tracking-[0.18rem] transition ${
-                          locale === "en"
-                            ? "bg-black text-white"
-                            : "text-black/70 hover:bg-black/5 hover:text-black"
-                        }`}
-                        onClick={() => {
-                          setLocale("en");
-                          setLangMenuOpen(false);
-                        }}
-                      >
-                        English
-                      </button>
-                    </li>
-                    <li role="presentation">
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={locale === "es"}
-                        className={`flex w-full items-center px-3 py-2 text-left text-[11px] uppercase tracking-[0.18rem] transition ${
-                          locale === "es"
-                            ? "bg-black text-white"
-                            : "text-black/70 hover:bg-black/5 hover:text-black"
-                        }`}
-                        onClick={() => {
-                          setLocale("es");
-                          setLangMenuOpen(false);
-                        }}
-                      >
-                        Español
-                      </button>
-                    </li>
-                  </ul>
-                ) : null}
-              </div>
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+              {langMenuOpen ? (
+                <ul role="listbox" aria-label={t.languageLabel} className={langDropdownClasses}>
+                  <li role="presentation">
+                    <Link
+                      href={replaceLocaleInPathname(pathname, "en")}
+                      role="option"
+                      aria-selected={locale === "en"}
+                      scroll={false}
+                      className={`flex w-full items-center px-3 py-2 text-left text-[11px] uppercase tracking-[0.18rem] transition ${
+                        locale === "en"
+                          ? "bg-black text-white"
+                          : "text-black/70 hover:bg-black/5 hover:text-black"
+                      }`}
+                      onClick={() => setLangMenuOpen(false)}
+                    >
+                      English
+                    </Link>
+                  </li>
+                  <li role="presentation">
+                    <Link
+                      href={replaceLocaleInPathname(pathname, "es")}
+                      role="option"
+                      aria-selected={locale === "es"}
+                      scroll={false}
+                      className={`flex w-full items-center px-3 py-2 text-left text-[11px] uppercase tracking-[0.18rem] transition ${
+                        locale === "es"
+                          ? "bg-black text-white"
+                          : "text-black/70 hover:bg-black/5 hover:text-black"
+                      }`}
+                      onClick={() => setLangMenuOpen(false)}
+                    >
+                      Español
+                    </Link>
+                  </li>
+                </ul>
+              ) : null}
             </div>
           </div>
         </div>
+
         <nav
           id="mobile-nav"
           className={mobileNavOpen ? "border-t border-black/10 pb-3 md:hidden" : "hidden md:hidden"}
           aria-label="Primary"
         >
           <div className="flex flex-col gap-1 pt-2 text-sm uppercase tracking-[0.19rem] text-black/70">
-            <a
+            <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href="#work"
+              href={localeHref(locale, "work")}
               onClick={() => setMobileNavOpen(false)}
+              scroll={false}
             >
               {t.nav.work}
-            </a>
-            <a
+            </Link>
+            <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href="#about"
+              href={localeHref(locale, "about")}
               onClick={() => setMobileNavOpen(false)}
+              scroll={false}
             >
               {t.nav.about}
-            </a>
-            <a
+            </Link>
+            <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href="#process"
+              href={localeHref(locale, "process")}
               onClick={() => setMobileNavOpen(false)}
+              scroll={false}
             >
               {t.nav.process}
-            </a>
-            <a
+            </Link>
+            <Link
               className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href="#contact"
+              href={localeHref(locale, "contact")}
               onClick={() => setMobileNavOpen(false)}
+              scroll={false}
             >
               {t.nav.contact}
-            </a>
+            </Link>
           </div>
         </nav>
+        </div>
       </div>
     </header>
   );

@@ -1,26 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { copyByLocale, Locale } from "./i18n";
-import { AboutSection } from "./components/AboutSection";
-import { ContactSection } from "./components/ContactSection";
-import { FeaturedWork } from "./components/FeaturedWork";
-import { Footer } from "./components/Footer";
-import { HeroSection } from "./components/HeroSection";
-import { Navbar } from "./components/Navbar";
-import { ProcessSection } from "./components/ProcessSection";
+import type { Locale } from "../i18n/config";
+import { copyByLocale } from "../i18n";
+import { AboutSection } from "./AboutSection";
+import { ContactSection } from "./ContactSection";
+import { FeaturedWork } from "./FeaturedWork";
+import { Footer } from "./Footer";
+import { HeroSection } from "./HeroSection";
+import { Navbar } from "./Navbar";
+import { ProcessSection } from "./ProcessSection";
 
-export default function Home() {
-  const [locale, setLocale] = useState<Locale>("en");
+export function HomePageClient({ locale }: { locale: Locale }) {
+  const t = copyByLocale[locale];
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
-  const t = copyByLocale[locale];
-
-  useEffect(() => {
-    document.documentElement.lang = locale === "es" ? "es" : "en";
-  }, [locale]);
+  const langMenuDesktopRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -50,7 +47,10 @@ export default function Home() {
   useEffect(() => {
     if (!langMenuOpen) return;
     const onPointerDown = (e: PointerEvent) => {
-      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const insideMobile = langMenuRef.current?.contains(target);
+      const insideDesktop = langMenuDesktopRef.current?.contains(target);
+      if (!insideMobile && !insideDesktop) {
         setLangMenuOpen(false);
       }
     };
@@ -60,26 +60,26 @@ export default function Home() {
 
   return (
     <main className="bg-[#f7f4ee] text-[rgb(38,38,38)]">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 py-5 sm:px-8 lg:px-10">
-        <Navbar
-          t={t}
-          locale={locale}
-          setLocale={setLocale}
-          mobileNavOpen={mobileNavOpen}
-          setMobileNavOpen={setMobileNavOpen}
-          langMenuOpen={langMenuOpen}
-          setLangMenuOpen={setLangMenuOpen}
-          langMenuRef={langMenuRef}
-        />
-        <HeroSection t={t} />
+      <Navbar
+        t={t}
+        locale={locale}
+        mobileNavOpen={mobileNavOpen}
+        setMobileNavOpen={setMobileNavOpen}
+        langMenuOpen={langMenuOpen}
+        setLangMenuOpen={setLangMenuOpen}
+        langMenuRef={langMenuRef}
+        langMenuDesktopRef={langMenuDesktopRef}
+      />
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 pb-5 sm:px-8 lg:px-10">
+        <HeroSection t={t} locale={locale} />
         <FeaturedWork t={t} />
         <AboutSection t={t} />
         <ProcessSection t={t} locale={locale} />
         <ContactSection t={t} />
-        <Footer t={t} />
+        <Footer t={t} locale={locale} />
       </div>
       <a
-        href="#"
+        href={`/${locale}`}
         aria-label={t.backToTop}
         title={t.backToTop}
         onClick={(e) => {

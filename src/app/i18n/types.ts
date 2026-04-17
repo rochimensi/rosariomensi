@@ -1,4 +1,4 @@
-export type Locale = "en" | "es";
+export type { Locale } from "./config";
 
 export type Project = {
   title: string;
