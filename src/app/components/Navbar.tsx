@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { Dispatch, RefObject, SetStateAction } from "react";
+import { useEffect, useState, type Dispatch, type RefObject, type SetStateAction } from "react";
 import { localeHref, replaceLocaleInPathname, type Locale } from "../i18n/config";
 import type { PageCopy } from "../i18n";
 
@@ -29,17 +29,37 @@ export function Navbar({
 }: NavbarProps) {
   const pathname = usePathname();
   const base = localeHref(locale);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const langDropdownClasses =
     "absolute right-0 top-full z-30 mt-1 min-w-28 rounded-lg border border-black/10 bg-white py-1 shadow-md";
 
   return (
-    <header className="sticky top-0 z-20 w-full bg-white">
+    <header
+      className={`sticky top-0 z-20 w-full transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-black/8 bg-white/70 shadow-[0_6px_24px_rgba(0,0,0,0.05)] backdrop-blur-md supports-backdrop-filter:bg-white/55"
+          : "bg-white"
+      }`}
+    >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="relative">
         <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 py-2 sm:gap-4 md:gap-6">
           {/* Left: section links (desktop) / menu (mobile) */}
-          <div className="flex min-h-[2.5rem] min-w-0 items-center justify-start">
+          <div className="flex min-h-10 min-w-0 items-center justify-start">
             <nav
               className="hidden flex-wrap gap-x-5 gap-y-1 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 md:flex lg:gap-x-7 lg:text-xs lg:tracking-[0.19rem]"
               aria-label="Primary"
