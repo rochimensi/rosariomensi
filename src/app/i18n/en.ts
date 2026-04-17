@@ -73,7 +73,7 @@ export const en: PageCopy = {
     ],
   },
   about: {
-    eyebrow: "About",
+    eyebrow: "About me",
     title: "The Bridge Between Tech and People",
     years: "14+ Years of Experience",
     p1: "I started as a Systems Engineer, focused on how things work. Over time, I became passionate about how things feel when people use them.",

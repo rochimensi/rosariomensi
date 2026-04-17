@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "Rosario Mensi | Digital Solutions Engineer",
   description:
     "A minimalist editorial portfolio showcasing UX case studies, process, and thoughtful digital experiences.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

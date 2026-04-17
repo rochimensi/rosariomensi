@@ -8,7 +8,9 @@ export function FeaturedWork({ t }: { t: PageCopy }) {
     <section id="work" className="py-16 md:py-24">
       <div className="mb-10 flex justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.26rem] text-black/55">{t.work.eyebrow}</p>
+          <p className="relative z-10 text-xs uppercase tracking-[0.26rem] text-black/55 md:before:absolute md:before:top-1/2 md:before:right-full md:before:mr-6 md:before:block md:before:h-px md:before:w-[200px] md:before:-translate-y-1/2 md:before:bg-black/25 md:before:content-['']">
+            {t.work.eyebrow}
+          </p>
           <h2 className="mt-3 font-display text-4xl italic tracking-[-0.06rem] sm:text-5xl">{t.work.title}</h2>
         </div>
       </div>

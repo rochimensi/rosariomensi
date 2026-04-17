@@ -18,8 +18,8 @@ export const es: PageCopy = {
     cta: "Ver proyectos seleccionados",
   },
   work: {
-    eyebrow: "Casos destacados",
-    title: "Proyectos de referencia",
+    eyebrow: "Proyectos",
+    title: "Casos destacados",
     clientsMarqueeLabel: "Empresas y equipos con los que he trabajado",
     projectImageLabel: "IMAGEN DEL PROYECTO",
     defaultCodeCta: "Ver código",
@@ -77,8 +77,8 @@ export const es: PageCopy = {
     title: "El Puente Entre Tecnología y Personas",
     years: "14+ Años de Experiencia",
     p1: "Comencé como Ingeniera en Sistemas. Pasé de entender cómo funcionan las cosas, a diseñar cómo se sienten al usarlas.",
-    p2: "Esa curiosidad me llevó al UX Design. Conecto lógica y empatía, y diseño con un entendimiento profundo de los sistemas técnicos, sin perder de vista el lado humano en cada decisión.",
-    p3: "Me entusiasma especialmente el desarrollo de productos AI-first, usando GenAI y automatización no solo como herramientas, sino como aceleradores para pensar mejor, iterar más rápido y generar mayor impacto.",
+    p2: "Conecto lógica y empatía, y diseño con un entendimiento profundo de los sistemas técnicos, sin perder de vista el lado humano en cada decisión.",
+    p3: "Me enfoco en productos AI-first, integrando GenAI y automatización como motores para pensar con mayor claridad, iterar con velocidad y escalar el impacto.",
     p4: "También creo contenido para redes sociales, transformando ideas en historias y piezas visuales claras que conectan con la audiencia correcta.",
     skillsTitle: "Habilidades",
     lifestyleTitle: "Estilo de vida",
@@ -96,8 +96,8 @@ export const es: PageCopy = {
     ],
   },
   process: {
-    eyebrow: "Cómo trabajo",
-    title: "Mi Proceso",
+    eyebrow: "Proceso",
+    title: "Cómo trabajo",
     centerLabel: "Desarrollo\niterativo",
     steps: [
       {
