@@ -1,4 +1,5 @@
 import type { Locale, PageCopy } from "../i18n";
+import { HeroEyebrowTypewriter } from "./HeroEyebrowTypewriter";
 
 const DIAGRAM_SIZE = 500;
 const CENTER = 250;
@@ -23,17 +24,19 @@ export function ProcessSection({ t, locale }: { t: PageCopy; locale: Locale }) {
     <section id="process" className="w-full border-b border-black/10 py-20 md:py-28 lg:py-32">
       <div className="w-full max-w-none">
         <div className="mb-6 md:mb-8">
-          <p className="relative z-10 mb-3 font-sans text-xs tracking-[0.26rem] text-black/55 uppercase md:before:absolute md:before:top-1/2 md:before:right-full md:before:mr-6 md:before:block md:before:h-px md:before:w-[200px] md:before:-translate-y-1/2 md:before:bg-black/25 md:before:content-['']">
-            {t.process.eyebrow}
-          </p>
+          <HeroEyebrowTypewriter
+            deferUntilInView
+            text={t.process.eyebrow}
+            className="relative z-10 mb-3 font-sans text-xs tracking-[0.26rem] text-black/55 uppercase md:before:absolute md:before:top-1/2 md:before:right-full md:before:mr-6 md:before:block md:before:h-px md:before:w-[200px] md:before:-translate-y-1/2 md:before:bg-black/25 md:before:content-['']"
+          />
           <h2 className="font-display text-4xl italic tracking-[-0.06rem] text-[rgb(38,38,38)] sm:text-5xl">
             {t.process.title}
           </h2>
         </div>
 
         <div className="hidden w-full md:block">
-          <div className="w-full overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="mx-auto flex w-full min-w-[1100px] justify-center px-4 pt-[clamp(10.5rem,20vw,16rem)] pb-[clamp(14rem,28vw,22rem)]">
+          <div className="w-full overflow-x-auto overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="mx-auto flex w-full min-w-[1100px] justify-center px-4 pt-[clamp(10.5rem,20vw,16rem)] pb-[clamp(9rem,14vw,12rem)]">
               <div
                 className="process-diagram relative shrink-0 overflow-visible"
                 style={{ width: DIAGRAM_SIZE, height: DIAGRAM_SIZE, minWidth: DIAGRAM_SIZE }}

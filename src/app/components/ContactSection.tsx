@@ -19,8 +19,8 @@ export function ContactSection({ t }: { t: PageCopy }) {
         </div>
         <div className="mt-10 flex w-full flex-col items-center gap-8 pt-10">
           <a
-            href="mailto:rosario@example.com"
-            className="inline-flex border-b border-white/30 pb-1 text-lg transition hover:border-white"
+            href="mailto:rochibass@gmail.com"
+            className="hero-work-link inline-flex text-lg text-white"
           >
             rochibass@gmail.com
           </a>

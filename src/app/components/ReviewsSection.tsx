@@ -1,16 +1,43 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { PageCopy } from "../i18n";
+import { HeroEyebrowTypewriter } from "./HeroEyebrowTypewriter";
 
 export function ReviewsSection({ t }: { t: PageCopy }) {
   const items = t.reviews.items;
   const count = items.length;
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const reviewsCarouselRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [cardsRevealed, setCardsRevealed] = useState(false);
   const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0 });
+
+  useLayoutEffect(() => {
+    const root = reviewsCarouselRef.current;
+    if (!root) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCardsRevealed(true);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setCardsRevealed(true);
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.06, rootMargin: "0px 0px -4% 0px" },
+    );
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
 
   const updateIndexFromScroll = useCallback(() => {
     const root = scrollerRef.current;
@@ -92,9 +119,11 @@ export function ReviewsSection({ t }: { t: PageCopy }) {
     <section id="reviews" className="w-full border-b border-black/10 py-20 md:py-28 lg:py-32">
       <div className="w-full max-w-none">
         <div className="mb-6 md:mb-8">
-          <p className="relative z-10 mb-3 font-sans text-xs tracking-[0.26rem] text-black/55 uppercase md:before:absolute md:before:top-1/2 md:before:right-full md:before:mr-6 md:before:block md:before:h-px md:before:w-[200px] md:before:-translate-y-1/2 md:before:bg-black/25 md:before:content-['']">
-            {t.reviews.eyebrow}
-          </p>
+          <HeroEyebrowTypewriter
+            deferUntilInView
+            text={t.reviews.eyebrow}
+            className="relative z-10 mb-3 font-sans text-xs tracking-[0.26rem] text-black/55 uppercase md:before:absolute md:before:top-1/2 md:before:right-full md:before:mr-6 md:before:block md:before:h-px md:before:w-[200px] md:before:-translate-y-1/2 md:before:bg-black/25 md:before:content-['']"
+          />
           <div className="flex items-end justify-between gap-3">
             <h2 className="min-w-0 flex-1 font-display text-4xl italic tracking-[-0.06rem] text-[rgb(38,38,38)] sm:text-5xl">
               {t.reviews.title}
@@ -114,6 +143,7 @@ export function ReviewsSection({ t }: { t: PageCopy }) {
         </div>
 
         <div
+          ref={reviewsCarouselRef}
           className="relative mt-10 md:mt-12"
           role="region"
           aria-roledescription="carousel"
@@ -135,7 +165,12 @@ export function ReviewsSection({ t }: { t: PageCopy }) {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${slideIndex + 1} of ${count}`}
-                className={`flex h-auto w-[min(36rem,calc(100dvw-2.5rem))] shrink-0 snap-center flex-col flex-wrap self-start rounded-2xl border border-black/10 bg-white/45 p-8 shadow-[0_1px_0_rgba(0,0,0,0.04)] sm:w-[min(38rem,calc(100dvw-3.5rem))] md:w-[min(40rem,calc(100dvw-5rem))] md:flex-row md:items-start md:gap-x-10 md:gap-y-0 md:p-10 lg:w-[min(32rem,calc(100dvw-6rem))] ${cardHoverClass}`}
+                className={`flex h-auto w-[min(36rem,calc(100dvw-2.5rem))] shrink-0 snap-center flex-col flex-wrap self-start rounded-2xl border border-black/10 bg-white/45 p-8 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition-[opacity,transform] duration-500 ease-out sm:w-[min(38rem,calc(100dvw-3.5rem))] md:w-[min(40rem,calc(100dvw-5rem))] md:flex-row md:items-start md:gap-x-10 md:gap-y-0 md:p-10 lg:w-[min(32rem,calc(100dvw-6rem))] motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${cardHoverClass} ${
+                  cardsRevealed ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: cardsRevealed ? `${slideIndex * 72}ms` : "0ms",
+                }}
               >
                 <div className="flex shrink-0 justify-center md:block md:w-20">
                   <Image

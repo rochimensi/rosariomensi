@@ -93,11 +93,11 @@ export function Navbar({
           : "bg-white"
       }`}
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto w-full px-2 sm:px-8 lg:px-10">
         <div className="relative">
         <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 py-2 sm:gap-4 md:gap-6">
           {/* Left: section links (desktop) / menu (mobile) */}
-          <div className="flex min-h-10 min-w-0 items-center justify-start">
+          <div className="navbar-fade-in navbar-fade-in-delay-sides flex min-h-10 min-w-0 items-center justify-start">
             <nav
               className="hidden flex-wrap gap-x-5 gap-y-1 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 md:flex lg:gap-x-7 lg:text-xs lg:tracking-[0.19rem]"
               aria-label="Primary"
@@ -171,7 +171,7 @@ export function Navbar({
             </button>
           </div>
 
-          <div className="flex min-w-0 justify-center px-1">
+          <div className="navbar-fade-in navbar-fade-in-delay-brand flex min-w-0 justify-center px-1">
             <Link
               href={base}
               className="font-display text-center text-xl italic leading-tight tracking-[0.07rem] text-[rgb(38,38,38)] sm:text-2xl sm:tracking-[0.09rem] md:text-3xl"
@@ -181,7 +181,7 @@ export function Navbar({
             </Link>
           </div>
 
-          <div className="flex items-center justify-end gap-3 sm:gap-4">
+          <div className="navbar-fade-in navbar-fade-in-delay-sides flex items-center justify-end gap-3 sm:gap-4">
             <Link
               href={localeHref(locale, "contact")}
               className="hidden shrink-0 text-xs font-medium uppercase tracking-[0.17rem] text-black/70 transition hover:text-black md:inline-block lg:text-sm lg:tracking-[0.19rem]"
@@ -318,50 +318,63 @@ export function Navbar({
 
         <nav
           id="mobile-nav"
-          className={mobileNavOpen ? "border-t border-black/10 pb-3 md:hidden" : "hidden md:hidden"}
+          className={[
+            "grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none md:hidden",
+            mobileNavOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+          ].join(" ")}
+          aria-hidden={!mobileNavOpen}
           aria-label="Primary"
         >
-          <div className="flex flex-col gap-1 pt-2 text-sm uppercase tracking-[0.19rem] text-black/70">
-            <Link
-              className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href={localeHref(locale, "work")}
-              onClick={(e) => goToSection(e, "work")}
-              scroll={false}
+          <div className="min-h-0 overflow-hidden" inert={!mobileNavOpen}>
+            <div
+              className={[
+                "border-t border-black/10 pb-3 pt-2 transition-opacity duration-300 ease-out motion-reduce:transition-none",
+                mobileNavOpen ? "opacity-100" : "opacity-0",
+              ].join(" ")}
             >
-              {t.nav.work}
-            </Link>
-            <Link
-              className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href={localeHref(locale, "about")}
-              onClick={(e) => goToSection(e, "about")}
-              scroll={false}
-            >
-              {t.nav.about}
-            </Link>
-            <Link
-              className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href={localeHref(locale, "process")}
-              onClick={(e) => goToSection(e, "process")}
-              scroll={false}
-            >
-              {t.nav.process}
-            </Link>
-            <Link
-              className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href={localeHref(locale, "reviews")}
-              onClick={(e) => goToSection(e, "reviews")}
-              scroll={false}
-            >
-              {t.nav.reviews}
-            </Link>
-            <Link
-              className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
-              href={localeHref(locale, "contact")}
-              onClick={(e) => goToSection(e, "contact")}
-              scroll={false}
-            >
-              {t.nav.contact}
-            </Link>
+              <div className="flex flex-col gap-1 text-sm uppercase tracking-[0.19rem] text-black/70">
+                <Link
+                  className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
+                  href={localeHref(locale, "work")}
+                  onClick={(e) => goToSection(e, "work")}
+                  scroll={false}
+                >
+                  {t.nav.work}
+                </Link>
+                <Link
+                  className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
+                  href={localeHref(locale, "about")}
+                  onClick={(e) => goToSection(e, "about")}
+                  scroll={false}
+                >
+                  {t.nav.about}
+                </Link>
+                <Link
+                  className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
+                  href={localeHref(locale, "process")}
+                  onClick={(e) => goToSection(e, "process")}
+                  scroll={false}
+                >
+                  {t.nav.process}
+                </Link>
+                <Link
+                  className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
+                  href={localeHref(locale, "reviews")}
+                  onClick={(e) => goToSection(e, "reviews")}
+                  scroll={false}
+                >
+                  {t.nav.reviews}
+                </Link>
+                <Link
+                  className="rounded-md px-2 py-2.5 transition hover:bg-black/4 hover:text-black"
+                  href={localeHref(locale, "contact")}
+                  onClick={(e) => goToSection(e, "contact")}
+                  scroll={false}
+                >
+                  {t.nav.contact}
+                </Link>
+              </div>
+            </div>
           </div>
         </nav>
         </div>
