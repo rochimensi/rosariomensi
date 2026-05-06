@@ -31,8 +31,8 @@ export function FeaturedWork({ t }: { t: PageCopy }) {
                   alt={project.title}
                   width={1600}
                   height={900}
+                  sizes="(min-width: 1280px) 1120px, (min-width: 768px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
                   className="h-auto w-full"
-                  priority={index === 0}
                 />
               ) : (
                 <div className="min-h-64">

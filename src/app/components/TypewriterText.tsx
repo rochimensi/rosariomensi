@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 
-/** Match ScrollReveal so typing starts as the section enters view. */
+/** Typing starts when this element intersects the viewport (first time only). */
 const IN_VIEW_OPTS: IntersectionObserverInit = {
   threshold: 0.06,
   rootMargin: "0px 0px -6% 0px",

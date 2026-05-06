@@ -11,8 +11,6 @@ import { HeroSection } from "./HeroSection";
 import { Navbar } from "./Navbar";
 import { ProcessSection } from "./ProcessSection";
 import { ReviewsSection } from "./ReviewsSection";
-import { ScrollReveal } from "./ScrollReveal";
-
 export function HomePageClient({ locale }: { locale: Locale }) {
   const t = copyByLocale[locale];
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -84,21 +82,11 @@ export function HomePageClient({ locale }: { locale: Locale }) {
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 pb-5 sm:px-8 lg:px-10">
         <HeroSection t={t} locale={locale} />
         <FeaturedWork t={t} />
-        <ScrollReveal>
-          <AboutSection t={t} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <ProcessSection t={t} locale={locale} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <ReviewsSection t={t} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <ContactSection t={t} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <Footer t={t} locale={locale} />
-        </ScrollReveal>
+        <AboutSection t={t} />
+        <ProcessSection t={t} locale={locale} />
+        <ReviewsSection t={t} />
+        <ContactSection t={t} />
+        <Footer t={t} locale={locale} />
       </div>
       <a
         href={`/${locale}`}

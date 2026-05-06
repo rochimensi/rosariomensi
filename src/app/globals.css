@@ -161,32 +161,3 @@ a {
     transition: none;
   }
 }
-
-/* Scroll-triggered section entrance (home & similar) */
-.scroll-reveal {
-  opacity: 0;
-  transform: translate3d(0, 1.25rem, 0);
-  transition:
-    opacity 1s ease,
-    transform 0.7s ease;
-}
-
-.scroll-reveal-visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Featured work: quicker entrance so “Selected Projects” / eyebrow doesn’t feel sluggish */
-.scroll-reveal.scroll-reveal-fast {
-  transition:
-    opacity 0.42s ease,
-    transform 0.42s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}

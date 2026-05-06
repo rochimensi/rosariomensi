@@ -93,7 +93,7 @@ function LogoRocketWagon() {
 
 function LogoEpwery() {
   return (
-    <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-zinc-500 px-3 py-1.5 opacity-55">
+    <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-[#7B7B7B] px-3 py-1.5 opacity-55">
       <Image
         src="/logos/epwery.png"
         alt=""

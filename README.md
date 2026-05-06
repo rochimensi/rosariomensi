@@ -4,10 +4,13 @@ This repository contains my personal portfolio website, built to showcase select
 
 The site is bilingual (English and Spanish) and includes:
 - Hero + personal positioning
-- Featured projects
+- Featured projects (with brand logo strip)
 - About section and skills
 - My design process (Discover -> Define -> Design -> Test -> Iterate)
+- Reviews / testimonials
 - Contact links
+
+Routes use a locale prefix (`/en`, `/es`). Visiting `/` redirects to the default locale (`/en`).
 
 ## Tech Stack
 
@@ -30,7 +33,7 @@ npm install
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000)
+3. Open [http://localhost:3000](http://localhost:3000) — you will be redirected to [http://localhost:3000/en](http://localhost:3000/en) (or open `/es` for Spanish).
 
 ## Available Scripts
 
@@ -41,10 +44,12 @@ npm run dev
 
 ## Project Structure
 
-- `src/app/page.tsx` - main page layout and sections
-- `src/app/i18n/en.ts` - English copy
-- `src/app/i18n/es.ts` - Spanish copy
-- `public/` - project and profile images
+- `src/middleware.ts` - redirects bare paths to `/{defaultLocale}`
+- `src/app/[locale]/page.tsx` - home page (locale segment)
+- `src/app/[locale]/layout.tsx` - locale layout, `hreflang`-style alternates, document language
+- `src/app/components/HomePageClient.tsx` - client shell: navbar, sections, back-to-top
+- `src/app/i18n/` - copy (`en.ts`, `es.ts`), `config.ts`, `types.ts`, `index.ts`
+- `public/` - favicon, project and profile images, logos
 
 ## Contact
 
