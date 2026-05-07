@@ -45,11 +45,13 @@ npm run dev
 ## Project Structure
 
 - `src/middleware.ts` - redirects bare paths to `/{defaultLocale}`
-- `src/app/[locale]/page.tsx` - home page (locale segment)
-- `src/app/[locale]/layout.tsx` - locale layout, `hreflang`-style alternates, document language
-- `src/app/components/HomePageClient.tsx` - client shell: navbar, sections, back-to-top
+- `src/app/[locale]/page.tsx` - server-rendered home: composes all sections for the active locale
+- `src/app/[locale]/layout.tsx` - locale layout, `hreflang`-style alternates, metadata
+- `src/app/components/` - UI pieces; most sections are **Server Components** (static markup and `next/image`). Client-only islands include `Navbar`, `BackToTopButton`, `ScrollToHashOnNavigation`, `ReviewsSection`, `TypewriterText` / `HeroEyebrowTypewriter`, and `SetDocumentLang` (`document.documentElement.lang`).
 - `src/app/i18n/` - copy (`en.ts`, `es.ts`), `config.ts`, `types.ts`, `index.ts`
 - `public/` - favicon, project and profile images, logos
+
+Locale routes (`/en`, `/es`) are **pre-rendered at build time** (`generateStaticParams`), so HTML is generated on the server during `next build`, not only in the browser.
 
 ## Contact
 

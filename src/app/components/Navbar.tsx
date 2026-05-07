@@ -2,40 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  useCallback,
-  useEffect,
-  useState,
-  type Dispatch,
-  type MouseEvent,
-  type RefObject,
-  type SetStateAction,
-} from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import { localeHref, replaceLocaleInPathname, type Locale } from "../i18n/config";
 import type { PageCopy } from "../i18n";
 
 export type NavbarProps = {
   t: PageCopy;
   locale: Locale;
-  mobileNavOpen: boolean;
-  setMobileNavOpen: Dispatch<SetStateAction<boolean>>;
-  langMenuOpen: boolean;
-  setLangMenuOpen: Dispatch<SetStateAction<boolean>>;
-  langMenuRef: RefObject<HTMLDivElement | null>;
-  langMenuDesktopRef: RefObject<HTMLDivElement | null>;
 };
 
-export function Navbar({
-  t,
-  locale,
-  mobileNavOpen,
-  setMobileNavOpen,
-  langMenuOpen,
-  setLangMenuOpen,
-  langMenuRef,
-  langMenuDesktopRef,
-}: NavbarProps) {
+export function Navbar({ t, locale }: NavbarProps) {
   const pathname = usePathname();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+  const langMenuDesktopRef = useRef<HTMLDivElement>(null);
   const base = localeHref(locale);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -81,6 +62,20 @@ export function Navbar({
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (!langMenuOpen) return;
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Node;
+      const insideMobile = langMenuRef.current?.contains(target);
+      const insideDesktop = langMenuDesktopRef.current?.contains(target);
+      if (!insideMobile && !insideDesktop) {
+        setLangMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [langMenuOpen]);
 
   const langDropdownClasses =
     "absolute right-0 top-full z-30 mt-1 min-w-28 rounded-lg border border-black/10 bg-white py-1 shadow-md";
