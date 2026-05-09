@@ -5,7 +5,6 @@ import { isLocale, locales, type Locale } from "../i18n/config";
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
-/** Fully static until the next deployment build; no periodic ISR. */
 export const dynamic = "force-static";
 export const revalidate = false;
 
